@@ -1,2 +1,3 @@
 class Auth:
-    pass
+    def login(self) -> bool:
+        pass
