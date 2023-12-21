@@ -1,9 +1,7 @@
 from flask import request
+from finance.routs.common import routes
 
-from flask import Blueprint
-from finance.models.models import User, db
-
-routes = Blueprint('routes', __name__)
+from finance.models.models import User, Categories, db
 
 
 @routes.route('/auth', methods=['POST'])
@@ -37,10 +35,5 @@ def registration():
         return {'success': False}
 
     return {'success': True}
-
-
-@routes.route('/', methods=['GET'])
-def test():
-    return {'Fuck': True}
 
 
