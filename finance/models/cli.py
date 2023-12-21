@@ -2,6 +2,6 @@ from app.app import app
 from finance.models.models import db
 
 
-if __name__ == '__main__':
+def create_db():
     with app.app_context():
         db.create_all()
