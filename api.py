@@ -1,5 +1,7 @@
 from app.app import app
-from finance.routs.auth.routs import routes
+import finance.routs.auth.routs
+import finance.routs.categories.routes
+from finance.routs.common import routes
 
 app.register_blueprint(routes)
 
