@@ -1,10 +1,11 @@
-from finance.models.models import db, Categories, UsersCategory
+from finance.models.models import db, Categories, UsersCategory, User
 
 
 class CategoriesAuth:
 
     @staticmethod
-    def set_categories(category_name, color, user_id):
+    def set_categories(category_name, color, current_user):
+        user = User.query.filter_by(login=current_user).first()
         category = Categories.query.filter_by(category_name=category_name, color=color).first()
 
         if not category:
@@ -18,8 +19,17 @@ class CategoriesAuth:
                 db.session.rollback()
                 print(e)
                 return False
-        user_category = UsersCategory(category.id, user_id)
-        user_category.query.filter_by(category_id=category.id, user_id=user_id)
+
+        user_category = UsersCategory.query.filter_by(category_id=category.id, user_id=user.id).first()
+        if not user_category:
+            try:
+                user_category = UsersCategory(category_id=category.id, user_id=user.id)
+                db.session.add(user_category)
+                db.session.commit()
+
+            except:
+                db.session.rollback()
+                return False
 
         return True
 

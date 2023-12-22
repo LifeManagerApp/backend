@@ -1,4 +1,5 @@
 from finance.models.models import User, db
+from finance.models.user import UserProperties
 
 
 class Auth:
@@ -20,6 +21,3 @@ class Auth:
             return False
         return True
 
-    @staticmethod
-    def method_for_test(a: int, b: int):
-        return a + b
