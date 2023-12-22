@@ -1,7 +1,6 @@
 from app.app import app
 from flask_sqlalchemy import SQLAlchemy
 
-
 db = SQLAlchemy(app)
 
 
@@ -16,4 +15,10 @@ class Categories(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category_name = db.Column(db.String(60), nullable=False)
     color = db.Column(db.String(6), nullable=False)
-    budget_type = db.Column(db.Boolean, nullable=False, default=True) # True - Income
+
+
+class UsersCategory(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
