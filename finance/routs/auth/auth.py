@@ -1,5 +1,4 @@
 from finance.models.models import User, db
-from finance.models.user import UserProperties
 
 
 class Auth:

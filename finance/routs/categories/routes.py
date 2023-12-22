@@ -18,6 +18,7 @@ def categories():
         return {"success": success}
 
     elif request.method == 'GET':
-        return CategoriesAuth.get_categories()
+        current_user = get_jwt_identity()
+        return CategoriesAuth.get_categories(current_user=current_user)
 
 

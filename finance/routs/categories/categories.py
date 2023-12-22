@@ -34,11 +34,13 @@ class CategoriesAuth:
         return True
 
     @staticmethod
-    def get_categories():
+    def get_categories(current_user):
         all_categories = {"categories": []}
-
-        query_set = Categories.query.all()
-        for category in query_set:
+        user_categories = db.session.query(Categories). \
+            join(UsersCategory, Categories.id == UsersCategory.category_id). \
+            join(User, UsersCategory.user_id == User.id). \
+            filter(User.login == current_user).all()
+        for category in user_categories:
             temp = {"id": category.id, "category_name": category.category_name, "color": category.color}
             all_categories["categories"].append(temp)
 
