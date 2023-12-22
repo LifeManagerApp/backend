@@ -16,4 +16,11 @@ class Categories(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category_name = db.Column(db.String(60), nullable=False)
     color = db.Column(db.String(6), nullable=False)
-    budget_type = db.Column(db.Boolean, nullable=False, default=True) # True - Income
+
+
+class MoneyManagement(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('categories.id', ondelete='CASCADE'), nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id', ondelete='CASCADE'), nullable=False)
+    comment = db.Column(db.String, nullable=True)
+    budget_type = db.Column(db.Boolean, nullable=False, default=True)  # True - Income
