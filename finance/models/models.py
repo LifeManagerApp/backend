@@ -16,6 +16,7 @@ class Categories(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category_name = db.Column(db.String(60), nullable=False)
     color = db.Column(db.String(6), nullable=False)
+    default = db.Column(db.Boolean, nullable=False, default=False)
 
 
 class UsersCategory(db.Model):

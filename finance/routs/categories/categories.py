@@ -1,11 +1,12 @@
 from finance.models.models import db, Categories, UsersCategory, User
+from finance.routs.auth.auth import Auth
 
 
 class CategoriesAuth:
 
     @staticmethod
-    def set_categories(category_name, color, current_user):
-        user = User.query.filter_by(login=current_user).first()
+    def set_categories(category_name, color, login):
+        user = Auth.get_user(login)
         category = Categories.query.filter_by(category_name=category_name, color=color).first()
 
         if not category:

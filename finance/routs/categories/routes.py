@@ -7,13 +7,13 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 @routes.route('/categories', methods=['POST', 'GET'])
 @jwt_required()
 def categories():
-    current_user = get_jwt_identity()
+    login = get_jwt_identity()
     if request.method == 'POST':
         data = request.get_json()
         category_name = data.get('category_name')
         color = data.get('color')
 
-        success = CategoriesAuth.set_categories(category_name=category_name, color=color, current_user=current_user)
+        success = CategoriesAuth.set_categories(category_name=category_name, color=color, login=login)
 
         return {"success": success}
 
