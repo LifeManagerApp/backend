@@ -1,12 +1,12 @@
 from flask import request
-from finance.routs.common import routes
+from finance.routs.common_rotes import routes
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from finance.routs.money_management.money_management import MoneyManagementHandling
 
 
 @routes.route('/money_management', methods=['POST', 'GET'])
 @jwt_required()
-def money_management():
+async def money_management():
     login = get_jwt_identity()
 
     if request.method == 'POST':

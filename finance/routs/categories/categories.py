@@ -5,7 +5,7 @@ from finance.routs.auth.auth import Auth
 class CategoriesAuth:
 
     @staticmethod
-    def set_categories(category_name, color, login):
+    async def set_categories(category_name, color, login):
         user = Auth.get_user(login)
         category = Categories.query.filter_by(category_name=category_name, color=color).first()
 
@@ -35,7 +35,7 @@ class CategoriesAuth:
         return True
 
     @staticmethod
-    def get_categories(current_user):
+    async def get_categories(current_user):
         all_categories = {"categories": []}
         user_categories = db.session.query(Categories). \
             join(UsersCategory, Categories.id == UsersCategory.category_id). \

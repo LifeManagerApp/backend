@@ -5,7 +5,7 @@ from finance.routs.auth.auth import Auth
 class MoneyManagementHandling:
 
     @staticmethod
-    def get_money_management(login, date_from, date_to):
+    async def get_money_management(login, date_from, date_to):
         results = db.session.query(MoneyManagement). \
             join(UsersCategory). \
             join(User). \
@@ -19,7 +19,7 @@ class MoneyManagementHandling:
     # TODO: Transfer data using NAMED TUPLES
 
     @staticmethod
-    def set_money_management(users_category_id, user_amount, comment, budget_type, date):
+    async def set_money_management(users_category_id, user_amount, comment, budget_type, date):
 
         money_management_notion = MoneyManagement(users_category_id=users_category_id,
                                                   user_amount=user_amount, comment=comment,
