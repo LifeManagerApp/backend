@@ -53,3 +53,16 @@ response: {
         "category_name": "transport", 
         "color": "ffffff"
   }]
+
+- http://localhost:9000/api/money_management
+  method: POST
+  data: {
+    "users_category_id": 1,
+    "amount": 1.1,
+    "comment": "test",
+    "budget_type": false,
+    "date": "12-12-2023"
+}
+  response: {
+    "Success": true
+}

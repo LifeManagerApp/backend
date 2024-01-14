@@ -8,5 +8,4 @@ services:
       - "9000:9000"
     restart: always
     volumes:
-      - ./backend/common:/api/backend/common
       - .env:/api/.env
