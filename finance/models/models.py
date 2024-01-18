@@ -8,8 +8,9 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     login = db.Column(db.String(80), nullable=False, unique=True)
-    password = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(150), nullable=False)
+    password = db.Column(db.String(100), nullable=True)
+    email = db.Column(db.String(150), nullable=True)
+    tg_id = db.Column(db.String(20), nullable=True)
 
 
 class Categories(db.Model):

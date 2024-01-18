@@ -20,6 +20,25 @@ async def auth():
     return {'success': success, 'access_token': access_token}
 
 
+@routes.route('/tg_auth', methods=['POST'])
+async def tg_auth():
+    access_token = None
+
+    data = request.get_json()
+
+    tg_id = data.get('tg_id')
+    first_name = data.get('first_name')
+    last_name = data.get('last_name')
+
+    login = f'{first_name} {last_name}'
+
+    success = await Auth.tg_auth(login=login, tg_id=tg_id)
+    if success:
+        access_token = create_access_token(identity=login)
+
+    return {'access_token': access_token}
+
+
 @routes.route('/registration', methods=['POST'])
 async def registration():
     access_token = None
