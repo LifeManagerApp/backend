@@ -17,7 +17,7 @@ class Auth(Hash):
         return False
 
     @classmethod
-    async def tg_auth(cls, login: str, tg_id: bytes) -> bool:
+    async def tg_auth(cls, login: str, tg_id: str) -> bool:
         user = await cls.get_user(login=login)
 
         if user is None:
@@ -73,8 +73,8 @@ class Auth(Hash):
         return success
 
     @classmethod
-    async def tg_registration(cls, login: str, tg_id: bytes):
-        tg_id = Crypto.decode(tg_id)
+    async def tg_registration(cls, login: str, tg_id: str):
+        #tg_id = Crypto.decode(tg_id)
         try:
             user = User(
                 tg_id=tg_id,
